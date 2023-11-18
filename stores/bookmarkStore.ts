@@ -1,4 +1,4 @@
-import { create, StateCreator } from 'zustand';
+import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
 import { Certificate } from '@/types/Certificate';
 
@@ -21,6 +21,7 @@ export const useBookmarkStore = create<BookmarkStore>()(
 		}),
 		{
 			name: 'bookmark store',
+			storage: createJSONStorage(() => sessionStorage),
 		}
 	)
 );

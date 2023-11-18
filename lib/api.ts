@@ -12,7 +12,7 @@ type CertificatesApiResponse = {
 export async function getCertificates(): Promise<CertificatesApiResponse> {
 	try {
 		const res = await fetch(
-			`${process.env.BASE_API}/certificates?includeMeta=true&page=1&limit=10`,
+			`${process.env.BASE_API}/certificates?includeMeta=true`,
 			{
 				headers: {
 					'API-ACCESS-TOKEN': process.env.API_ACCESS_TOKEN || '',
@@ -20,7 +20,9 @@ export async function getCertificates(): Promise<CertificatesApiResponse> {
 			}
 		);
 
-		return await res.json();
+		const data = await res.json();
+
+		return data;
 	} catch (e) {
 		console.log('Error in fetching certificates', e);
 		return {
