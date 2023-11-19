@@ -23,7 +23,7 @@ const headerLinks: HeaderLink[] = [
 
 export default function Header() {
 	return (
-		<header className="bg-background p-6 text-foreground shadow-md">
+		<header className="bg-background px-6 py-4 text-foreground shadow-md">
 			<nav className="flex items-center justify-between">
 				<div className="flex">
 					<Image

@@ -38,12 +38,12 @@ const BookmarkColumn = ({ certificate }: { certificate: Certificate }) => {
 	const renderBookmarkIcon = () => {
 		return (
 			<Bookmark
-				className={`cursor-pointer ${
+				className={`cursor-pointer rounded-xl p-1 hover:bg-gray-100 dark:hover:bg-gray-700 ${
 					isBookmarked ? 'fill-black dark:fill-white' : ''
 				} ${effect ? 'animate-wiggle' : ''}`}
 				onClick={() => (isBookmarked ? setOpenPop(true) : handleClick())}
 				onAnimationEnd={() => setEffect(false)}
-				size={17}
+				size={23}
 			/>
 		);
 	};
