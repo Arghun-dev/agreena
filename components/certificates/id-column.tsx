@@ -12,17 +12,26 @@ import {
 export default function IDColumn({ value }: { value: string }) {
 	const { toast } = useToast();
 
-	const handleClick = () => {
-		copyToClipBoard(value);
-		toast({
-			title: 'Copied Successfully!',
-			description: (
-				<div className="mt-4 text-xs">
-					<span className="font-semibold">{value}</span> copied to clipboard.
-				</div>
-			),
-			duration: 9000,
-		});
+	const handleClick = async () => {
+		try {
+			await copyToClipBoard(value);
+			toast({
+				title: 'Copied Successfully!',
+				description: (
+					<div className="mt-4 text-xs">
+						<span className="font-semibold">{value}</span> copied to clipboard.
+					</div>
+				),
+				duration: 9000,
+			});
+		} catch (e) {
+			console.log(e);
+			toast({
+				variant: 'destructive',
+				title: 'Could not copy!',
+				duration: 9000,
+			});
+		}
 	};
 
 	return (
@@ -30,7 +39,11 @@ export default function IDColumn({ value }: { value: string }) {
 			<TooltipProvider>
 				<Tooltip>
 					<TooltipTrigger asChild>
-						<div className="cursor-pointer truncate" onClick={handleClick}>
+						<div
+							className="cursor-pointer truncate"
+							data-testid="unique-number"
+							onClick={handleClick}
+						>
 							{value}
 						</div>
 					</TooltipTrigger>
