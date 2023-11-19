@@ -2,7 +2,13 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-First, run the development server:
+First install the packages:
+
+```bash
+npm i
+```
+
+Then, run the development server:
 
 ```bash
 npm run dev
@@ -13,6 +19,8 @@ pnpm dev
 # or
 bun dev
 ```
+
+**I have deliberately, pushed `.env` to the repo so you can run the app easily, after you check the code I will delete `.env` file from the repo**
 
 ## Overview
 
