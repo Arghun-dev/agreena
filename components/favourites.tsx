@@ -6,5 +6,5 @@ import { useBookmarkStore } from '@/stores/bookmarkStore';
 
 export default function FavouritesTable() {
 	const { bookmarks } = useBookmarkStore();
-	return <DataTable data={bookmarks} columns={columns} />;
+	return <DataTable data={bookmarks} columns={columns} title="Favourites" />;
 }

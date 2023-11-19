@@ -1,6 +1,6 @@
 'use client';
 
-import { memo, useState, useEffect } from 'react';
+import { memo, useState } from 'react';
 import { Bookmark } from 'lucide-react';
 import { Certificate } from '@/types/Certificate';
 import { useBookmarkStore } from '@/stores/bookmarkStore';
@@ -38,18 +38,19 @@ const BookmarkColumn = ({ certificate }: { certificate: Certificate }) => {
 	const renderBookmarkIcon = () => {
 		return (
 			<Bookmark
-				className={`cursor-pointer ${isBookmarked ? 'fill-black' : ''} ${
-					effect ? 'animate-wiggle' : ''
-				}`}
+				className={`cursor-pointer ${
+					isBookmarked ? 'fill-black dark:fill-white' : ''
+				} ${effect ? 'animate-wiggle' : ''}`}
 				onClick={() => (isBookmarked ? setOpenPop(true) : handleClick())}
 				onAnimationEnd={() => setEffect(false)}
+				size={17}
 			/>
 		);
 	};
 
 	const renderPopoverContent = () => (
 		<PopoverContent>
-			<p>Are you sure you want to remove this to bookmarks?</p>
+			<p>Are you sure you want to remove this from bookmarks?</p>
 			<div className="mt-6 text-end">
 				<Button
 					className="mr-2 h-2 p-3"
@@ -76,5 +77,3 @@ const BookmarkColumn = ({ certificate }: { certificate: Certificate }) => {
 };
 
 export default memo(BookmarkColumn);
-
-BookmarkColumn.whyDidYouRender = true;

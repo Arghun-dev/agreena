@@ -4,6 +4,7 @@ import { cn } from '@/lib/utils';
 import { Toaster } from '@/components/ui/toaster';
 import './globals.css';
 import Header from '@/components/header';
+import { ThemeProvider } from '@/lib/theme-provider';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
 
@@ -23,13 +24,20 @@ export default function RootLayout({
 		<html lang="en" suppressHydrationWarning>
 			<body
 				className={cn(
-					'h-full w-full bg-background bg-gray-100 font-sans antialiased',
+					'h-full w-full bg-gray-100 font-sans antialiased dark:bg-black',
 					inter.variable
 				)}
 			>
-				<Header />
-				<main className="container my-12">{children}</main>
-				<Toaster />
+				<ThemeProvider
+					attribute="class"
+					defaultTheme="system"
+					enableSystem
+					disableTransitionOnChange
+				>
+					<Header />
+					<main className="container my-12">{children}</main>
+					<Toaster />
+				</ThemeProvider>
 			</body>
 		</html>
 	);

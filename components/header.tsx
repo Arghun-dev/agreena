@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { ThemeSwitch } from './theme-switch';
 
 interface HeaderLink {
 	id: number;
@@ -22,20 +23,29 @@ const headerLinks: HeaderLink[] = [
 
 export default function Header() {
 	return (
-		<header className="bg-slate-300 p-6 shadow-md">
-			<nav className="flex justify-between">
-				<Image src="/favicon.svg" width={75} height={75} alt="logo" />
-				<div>
-					{headerLinks.map((link) => (
-						<Link
-							key={link.id}
-							href={link.href}
-							className="ml-6 transition-all hover:text-teal-900"
-						>
-							{link.title}
-						</Link>
-					))}
+		<header className="bg-background p-6 text-foreground shadow-md">
+			<nav className="flex items-center justify-between">
+				<div className="flex">
+					<Image
+						src="/favicon.svg"
+						width={75}
+						height={75}
+						alt="logo"
+						className="mr-16"
+					/>
+					<div>
+						{headerLinks.map((link) => (
+							<Link
+								key={link.id}
+								href={link.href}
+								className="mr-6 transition-all hover:text-teal-700"
+							>
+								{link.title}
+							</Link>
+						))}
+					</div>
 				</div>
+				<ThemeSwitch />
 			</nav>
 		</header>
 	);

@@ -10,5 +10,11 @@ export default async function CertificatesDataTable() {
 		throw new CertificatesError(errors[0]);
 	}
 
-	return <DataTable columns={columns} data={result?.data || []} />;
+	return (
+		<DataTable
+			columns={columns}
+			data={result?.data || []}
+			title="Certificates"
+		/>
+	);
 }

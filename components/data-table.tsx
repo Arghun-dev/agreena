@@ -30,11 +30,13 @@ import {
 interface DataTableProps<TData, TValue> {
 	columns: ColumnDef<TData, TValue>[];
 	data: TData[];
+	title?: string;
 }
 
 export function DataTable<TData, TValue>({
 	columns,
 	data,
+	title,
 }: DataTableProps<TData, TValue>) {
 	const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
 
@@ -51,7 +53,8 @@ export function DataTable<TData, TValue>({
 
 	return (
 		<>
-			<div className="text-end">
+			<div className="mb-8 flex items-center justify-between">
+				<h1 className="text-2xl">{title || ''}</h1>
 				<DropdownMenu>
 					<DropdownMenuTrigger asChild>
 						<Button variant="outline" className="ml-auto">
@@ -84,7 +87,10 @@ export function DataTable<TData, TValue>({
 				<Table className="border-separate border-spacing-x-0 border-spacing-y-2 text-xs">
 					<TableHeader>
 						{table.getHeaderGroups().map((headerGroup) => (
-							<TableRow key={headerGroup.id} className="border-none">
+							<TableRow
+								key={headerGroup.id}
+								className="border-none hover:dark:bg-black"
+							>
 								{headerGroup.headers.map((header) => {
 									return (
 										<TableHead
@@ -109,7 +115,7 @@ export function DataTable<TData, TValue>({
 								<TableRow
 									key={row.id}
 									data-state={row.getIsSelected() && 'selected'}
-									className="rounded-md border-none bg-white shadow-sm transition-shadow hover:bg-white hover:shadow-md"
+									className="rounded-md border-none bg-white shadow-sm transition-shadow hover:bg-white hover:shadow-md dark:bg-gray-950 dark:hover:bg-gray-900"
 								>
 									{row.getVisibleCells().map((cell) => (
 										<TableCell
