@@ -51,3 +51,10 @@ Although the application functions well, there are areas for future enhancements
 2. **Internationalization**: I wanted to add localization support for the app, but I didn't have enough time to do that.
 
 3. **Refactoring**: Consider refactoring the codebase to make it more maintainable, scalable, and readable.
+
+
+
+## Lighthouse Desktop Result
+
+<img width="1511" alt="Screenshot 2023-11-19 at 20 23 06" src="https://github.com/Arghun-dev/agreena/assets/53907570/9cace123-85c3-4dc9-9502-603910964931">
+
