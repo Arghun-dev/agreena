@@ -1,12 +1,13 @@
 'use client';
 
+import dynamic from 'next/dynamic';
 import { ColumnDef } from '@tanstack/react-table';
-import {
-	CarbonCertificateOwnerAccount,
-	Certificate,
-} from '@/types/Certificate';
+import { Certificate, CarbonUser } from '@/types/Certificate';
 import IDColumn from './id-column';
-import BookmarkColumn from './bookmark-column';
+
+const BookmarkColumn = dynamic(() => import('./bookmark-column'), {
+	ssr: false,
+});
 
 export const columns: ColumnDef<Certificate>[] = [
 	{
@@ -28,16 +29,22 @@ export const columns: ColumnDef<Certificate>[] = [
 		accessorKey: 'carbonCertificateOwnerAccount',
 		header: 'Owner',
 		cell: ({ row }) => {
-			const ownerAccount = row.getValue(
-				'carbonCertificateOwnerAccount'
-			) as CarbonCertificateOwnerAccount;
+			const certificate = row.original;
 
-			return <div>{ownerAccount.carbonUser.company.name}</div>;
+			return (
+				<div>
+					{certificate.carbonCertificateOwnerAccount.carbonUser.company.name}
+				</div>
+			);
 		},
 	},
 	{
-		accessorKey: 'countryCode',
+		accessorKey: 'carbonUser',
 		header: 'Owner Country',
+		cell: ({ row }) => {
+			const carbonUser = row.getValue('carbonUser') as CarbonUser;
+			return <div>{carbonUser.company.address.country}</div>;
+		},
 	},
 	{
 		accessorKey: 'status',

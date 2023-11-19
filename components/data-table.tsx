@@ -1,11 +1,14 @@
 'use client';
 
+import { useState } from 'react';
+
 import {
 	ColumnDef,
 	flexRender,
 	getCoreRowModel,
 	getPaginationRowModel,
 	useReactTable,
+	VisibilityState,
 } from '@tanstack/react-table';
 
 import {
@@ -17,6 +20,12 @@ import {
 	TableRow,
 } from '@/components/ui/table';
 import { Button } from '@/components/ui/button';
+import {
+	DropdownMenu,
+	DropdownMenuCheckboxItem,
+	DropdownMenuContent,
+	DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 
 interface DataTableProps<TData, TValue> {
 	columns: ColumnDef<TData, TValue>[];
@@ -27,15 +36,50 @@ export function DataTable<TData, TValue>({
 	columns,
 	data,
 }: DataTableProps<TData, TValue>) {
+	const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
+
 	const table = useReactTable({
 		data,
 		columns,
 		getCoreRowModel: getCoreRowModel(),
 		getPaginationRowModel: getPaginationRowModel(),
+		onColumnVisibilityChange: setColumnVisibility,
+		state: {
+			columnVisibility,
+		},
 	});
 
 	return (
 		<>
+			<div className="text-end">
+				<DropdownMenu>
+					<DropdownMenuTrigger asChild>
+						<Button variant="outline" className="ml-auto">
+							Columns
+						</Button>
+					</DropdownMenuTrigger>
+					<DropdownMenuContent align="end">
+						{table
+							.getAllColumns()
+							.filter((column) => column.getCanHide())
+							.map((column) => {
+								return (
+									<DropdownMenuCheckboxItem
+										key={column.id}
+										className="capitalize"
+										checked={column.getIsVisible()}
+										onCheckedChange={(value) =>
+											column.toggleVisibility(!!value)
+										}
+									>
+										{column.id}
+									</DropdownMenuCheckboxItem>
+								);
+							})}
+					</DropdownMenuContent>
+				</DropdownMenu>
+			</div>
+
 			<div className="rounded-md">
 				<Table className="border-separate border-spacing-x-0 border-spacing-y-2 text-xs">
 					<TableHeader>

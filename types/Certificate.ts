@@ -31,13 +31,13 @@ interface User {
 	id: number;
 }
 
-interface CarbonUser {
+export interface CarbonUser {
 	id: number;
 	user: User;
 	company: Company;
 }
 
-export interface CarbonCertificateOwnerAccount {
+interface CarbonCertificateOwnerAccount {
 	id: number;
 	carbonUser: CarbonUser;
 }

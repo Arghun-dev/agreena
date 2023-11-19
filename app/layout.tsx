@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { cn } from '@/lib/utils';
-import { TooltipProvider } from '@/components/ui/tooltip';
 import { Toaster } from '@/components/ui/toaster';
 import './globals.css';
 import Header from '@/components/header';
@@ -28,11 +27,9 @@ export default function RootLayout({
 					inter.variable
 				)}
 			>
-				<TooltipProvider>
-					<Header />
-					<main className="container my-12">{children}</main>
-					<Toaster />
-				</TooltipProvider>
+				<Header />
+				<main className="container my-12">{children}</main>
+				<Toaster />
 			</body>
 		</html>
 	);

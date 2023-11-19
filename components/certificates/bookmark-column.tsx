@@ -1,6 +1,6 @@
 'use client';
 
-import { memo, useState } from 'react';
+import { memo, useState, useEffect } from 'react';
 import { Bookmark } from 'lucide-react';
 import { Certificate } from '@/types/Certificate';
 import { useBookmarkStore } from '@/stores/bookmarkStore';
@@ -19,7 +19,7 @@ const BookmarkColumn = ({ certificate }: { certificate: Certificate }) => {
 	const { addBookmark, removeBookmark, bookmarks } = useBookmarkStore();
 
 	const isBookmarked = bookmarks.some(
-		(bookmark) => bookmark.id === certificate.id
+		(bookmark) => bookmark.id == certificate.id
 	);
 
 	const handleClick = () => {
@@ -35,22 +35,21 @@ const BookmarkColumn = ({ certificate }: { certificate: Certificate }) => {
 		}
 	};
 
-	const renderBookmarkIcon = () => (
-		<Bookmark
-			className={`cursor-pointer ${effect && 'animate-wiggle'} ${
-				isBookmarked ? 'fill-black' : ''
-			}`}
-			onClick={() => (isBookmarked ? setOpenPop(true) : handleClick())}
-			onAnimationEnd={() => setEffect(false)}
-		/>
-	);
+	const renderBookmarkIcon = () => {
+		return (
+			<Bookmark
+				className={`cursor-pointer ${isBookmarked ? 'fill-black' : ''} ${
+					effect ? 'animate-wiggle' : ''
+				}`}
+				onClick={() => (isBookmarked ? setOpenPop(true) : handleClick())}
+				onAnimationEnd={() => setEffect(false)}
+			/>
+		);
+	};
 
 	const renderPopoverContent = () => (
 		<PopoverContent>
-			<p>
-				Are you sure you want to {isBookmarked ? 'remove' : 'add'} this to
-				bookmarks?
-			</p>
+			<p>Are you sure you want to remove this to bookmarks?</p>
 			<div className="mt-6 text-end">
 				<Button
 					className="mr-2 h-2 p-3"
@@ -77,3 +76,5 @@ const BookmarkColumn = ({ certificate }: { certificate: Certificate }) => {
 };
 
 export default memo(BookmarkColumn);
+
+BookmarkColumn.whyDidYouRender = true;
