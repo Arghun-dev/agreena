@@ -1,5 +1,7 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+You can access the live demo of the project here: [Agreena Live Demo](https://agreena.vercel.app/)
+
 ## Getting Started
 
 First install the packages:
