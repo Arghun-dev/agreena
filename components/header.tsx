@@ -1,27 +1,12 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { ThemeSwitch } from './theme-switch';
+import { Locale } from '@/i18n.config';
+import { getDictionary } from '@/lib/dictionary';
+import { ThemeSwitcher } from './theme-switcher';
 
-interface HeaderLink {
-	id: number;
-	title: string;
-	href: string;
-}
+export default async function Header({ lang }: { lang: Locale }) {
+	const { navigation } = await getDictionary(lang);
 
-const headerLinks: HeaderLink[] = [
-	{
-		id: 1,
-		title: 'Certificates',
-		href: '/',
-	},
-	{
-		id: 2,
-		title: 'Favourites',
-		href: '/favourites',
-	},
-];
-
-export default function Header() {
 	return (
 		<header className="bg-background px-6 py-4 text-foreground shadow-md">
 			<nav className="flex items-center justify-between">
@@ -33,19 +18,26 @@ export default function Header() {
 						alt="logo"
 						className="mr-16"
 					/>
-					<div>
-						{headerLinks.map((link) => (
+					<ul className="gab-x-8 flex">
+						<li>
 							<Link
-								key={link.id}
-								href={link.href}
-								className="mr-6 transition-all hover:text-teal-700"
+								href={`/${lang}`}
+								className="transition-all hover:text-teal-700"
 							>
-								{link.title}
+								{navigation.home}
 							</Link>
-						))}
-					</div>
+						</li>
+						<li>
+							<Link
+								href={`/${lang}/favourites`}
+								className="transition-all hover:text-teal-700"
+							>
+								{navigation.favourites}
+							</Link>
+						</li>
+					</ul>
 				</div>
-				<ThemeSwitch />
+				<ThemeSwitcher />
 			</nav>
 		</header>
 	);
