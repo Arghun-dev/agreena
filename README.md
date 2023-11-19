@@ -14,23 +14,30 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Overview
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+This app is a simple table component of shadcn/ui table which is using radix-ui and tailwind, with the functionality of adding each row to bookmark list and copy to clipboard each unique number.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Teach Stack
 
-## Learn More
+1. **Next.js**: Next.js was chosen for its powerful features, including Server Components and Server Actions, which help reduce the client-side JavaScript bundle size, improving performance. For more information, refer to the Next.js documentation.
 
-To learn more about Next.js, take a look at the following resources:
+2. **Typescript**: Typescript is used for type safety, making the application more robust and maintainable. It enhances the development process with intelligent code completion.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3. **Tailwind CSS + Shadcn UI**: Shadcn UI is a new tool that combines Radix UI with Tailwind CSS, offering customizable components without the need for additional packages. The integration of Tailwind CSS with Next.js makes styling efficient.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+4. **Zustand**: Zustand is a state management library. I used it for local state management to add each row to the bookmark list.
 
-## Deploy on Vercel
+5. **Lucide-React Icons Package**: Lucide-React provides a collection of icons for use in the application.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+6. **ESLint + Husky + Prettier**: ESLint, Husky, and Prettier are configured to ensure code quality and safety with pre-commit checks.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Future Improvements
+
+Although the application functions well, there are areas for future enhancements:
+
+1. **Testing**: Expand test coverage by adding unit tests for utility functions and end-to-end tests to ensure complete coverage of UI functionality.
+
+2. **Internationalization**: I wanted to add localization support for the app, but I didn't have enough time to do that.
+
+3. **Refactoring**: Consider refactoring the codebase to make it more maintainable, scalable, and readable.
